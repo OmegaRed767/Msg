@@ -15,7 +15,7 @@ const mongoose = require("mongoose");
 mongoose
   .connect(
     "mongodb+srv://Kona:" +
-      process.env.db +
+      "Persist" +
       "@cluster0.cyiwc.mongodb.net/MessageApp?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,

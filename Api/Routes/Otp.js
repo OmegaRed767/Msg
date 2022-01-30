@@ -9,7 +9,10 @@ const mongoose = require("mongoose");
 var otpGenerator = require("otp-generator");
 
 //twillo
-const client = require("twilio")(process.env.accountSid, process.env.authToken);
+const client = require("twilio")(
+  "ACd7cef8ffe1a2a6527241befd794b4a85",
+  "9099be88f5d0dda9dd5952020206a179"
+);
 
 route.get("/Otp/Generate", (req, res, next) => {
   const g_otp = otpGenerator.generate(6, {
