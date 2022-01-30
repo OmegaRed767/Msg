@@ -33,6 +33,9 @@ app.use(cors());
 // path
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use("/msg", (req, res, next) => {
+  res.status(200).json({ msg: "hello" });
+});
 app.use("/Otp", Otp);
 app.use("/Chat", Chat);
 //handling error
