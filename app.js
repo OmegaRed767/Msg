@@ -6,16 +6,17 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 // routes
-const Product = require("./Api/Routes/Products");
-const Order = require("./Api/Routes/Order");
 const Otp = require("./Api/Routes/Otp");
+const Chat = require("./Api/Routes/Chat");
 
 //mongoose
 const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://Kona:Persist@cluster0.cyiwc.mongodb.net/MessageApp?retryWrites=true&w=majority",
+    "mongodb+srv://Kona:" +
+      process.env.db +
+      "@cluster0.cyiwc.mongodb.net/MessageApp?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -32,9 +33,8 @@ app.use(cors());
 // path
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/Order", Order);
-app.use("/Product", Product);
 app.use("/Otp", Otp);
+app.use("/Chat", Chat);
 //handling error
 app.use((req, res, next) => {
   const error = new Error("Uh Oh Error occured");

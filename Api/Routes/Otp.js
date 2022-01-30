@@ -9,12 +9,9 @@ const mongoose = require("mongoose");
 var otpGenerator = require("otp-generator");
 
 //twillo
-const client = require("twilio")(
-  "ACd7cef8ffe1a2a6527241befd794b4a85",
-  "9099be88f5d0dda9dd5952020206a179"
-);
+const client = require("twilio")(process.env.accountSid, process.env.authToken);
 
-route.get("/generate/otp", (req, res, next) => {
+route.get("/Otp/Generate", (req, res, next) => {
   const g_otp = otpGenerator.generate(6, {
     alphabets: false,
     upperCase: false,
@@ -24,7 +21,7 @@ route.get("/generate/otp", (req, res, next) => {
   client.messages.create({
     body: g_otp,
     from: "+16106013011",
-    to: "+919840650469",
+    to: "+91" + req.body.number,
   });
   bcrypt.hash(g_otp, 10, (err, hash) => {
     if (err) {
@@ -48,7 +45,7 @@ route.get("/generate/otp", (req, res, next) => {
   });
 });
 
-route.get("/Verify/Otp", (req, res, next) => {
+route.get("/Otp/Verify", (req, res, next) => {
   Otp.find({ mobile: req.body.mobile })
     .exec()
     .then((doc) => {
