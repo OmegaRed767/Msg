@@ -1,6 +1,5 @@
 {
   "env": {
-    "PORT": "4000",
     "db": "Persist",
     "accountSid": "ACd7cef8ffe1a2a6527241befd794b4a85",
     "authToken": "9099be88f5d0dda9dd5952020206a179"
